@@ -2,40 +2,40 @@
 
 function generateDecoratedName() {
     const name = document.getElementById('nameInput').value;
+    const decorations = ['★', '✿', '♡', '❀', '✦', '❖', '═', '─', '•', '✧', '♦', '♢']; // رموز زخرفية
+    const colors = ['red', 'blue', 'green', 'purple', 'orange', 'pink', 'gold', 'cyan']; // ألوان مختلفة
+    const fonts = [
+        'Arial', 
+        'Tahoma', 
+        'Verdana', 
+        'Courier New', 
+        'Times New Roman', 
+        'Shorif', 
+        'Amiri', 
+        'Cairo', 
+        'Noto Naskh Arabic'
+    ]; // خطوط متنوعة
+
+    // زخرفة الحروف مع خطوط وألوان ورموز
     const decoratedName = name.split('').map(char => {
-        // زخرفة الحروف بشكل بسيط
-        switch(char) {
-            case 'أ': return 'أ';
-            case 'ب': return 'ب';
-            case 'ت': return 'ت';
-            case 'ث': return 'ث';
-            case 'ج': return 'ج';
-            case 'ح': return 'ح';
-            case 'خ': return 'خ';
-            case 'د': return 'د';
-            case 'ذ': return 'ذ';
-            case 'ر': return 'ر';
-            case 'ز': return 'ز';
-            case 'س': return 'س';
-            case 'ش': return 'ش';
-            case 'ص': return 'ص';
-            case 'ض': return 'ض';
-            case 'ط': return 'ط';
-            case 'ظ': return 'ظ';
-            case 'ع': return 'ع';
-            case 'غ': return 'غ';
-            case 'ف': return 'ف';
-            case 'ق': return 'ق';
-            case 'ك': return 'ك';
-            case 'ل': return 'ل';
-            case 'م': return 'م';
-            case 'ن': return 'ن';
-            case 'ه': return 'ه';
-            case 'و': return 'و';
-            case 'ي': return 'ي';
-            default: return char;
+        if (char.trim()) {
+            const randomDecoration1 = decorations[Math.floor(Math.random() * decorations.length)];
+            const randomDecoration2 = decorations[Math.floor(Math.random() * decorations.length)];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            const randomFont = fonts[Math.floor(Math.random() * fonts.length)];
+            return `<span style="color: ${randomColor}; font-family: '${randomFont}'; font-size: 24px;">${randomDecoration1}${char}${randomDecoration2}</span>`;
         }
+        return char;
     }).join('');
 
-    document.getElementById('decoratedName').innerText = decoratedName;
+    // إضافة خطوط زخرفية حول الاسم
+    const topLine = '━'.repeat(20);
+    const bottomLine = '━'.repeat(20);
+
+    // عرض الاسم المزخرف
+    document.getElementById('decoratedName').innerHTML = `
+        <div style="margin: 10px 0; font-size: 20px;">${topLine}</div>
+        <div>${decoratedName}</div>
+        <div style="margin: 10px 0; font-size: 20px;">${bottomLine}</div>
+    `;
 }
